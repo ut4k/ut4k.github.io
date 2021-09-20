@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>Windows用ウィンドウマネージャ「nog」の設定</title>
+  
+  <link rel="canonical" href="http://ut4k.github.io/2021/09/21/Windows%E7%94%A8%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3%E3%80%8Cnog%E3%80%8D%E3%81%AE%E8%A8%AD%E5%AE%9A/">
+  
+  <meta name="description" content="Windows向けに開発されているウィンドウマネージャ「nog」の設定について。開発段階ということもありドキュメントにはあまり書かれていない部分があったためメモしておきます。 installationgithubからreleaseをダウンロード＞nog.exeを起動しようとしてもうまくいかない。公式">
+  
+  
+  <meta name="author" content="yuta kimura">
+  
+  <meta property="og:image" content="http://ut4k.github.ioundefined">
+  
+  <meta property="og:site_name" content="happy-dev" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Windows用ウィンドウマネージャ「nog」の設定" />
+  
+  <meta property="og:description" content="Windows向けに開発されているウィンドウマネージャ「nog」の設定について。開発段階ということもありドキュメントにはあまり書かれていない部分があったためメモしておきます。 installationgithubからreleaseをダウンロード＞nog.exeを起動しようとしてもうまくいかない。公式">
+  
+  <meta property="og:url" content="http://ut4k.github.io/2021/09/21/Windows%E7%94%A8%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3%E3%80%8Cnog%E3%80%8D%E3%81%AE%E8%A8%AD%E5%AE%9A/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Windows用ウィンドウマネージャ「nog」の設定">
+  
+  <meta name="twitter:description" content="Windows向けに開発されているウィンドウマネージャ「nog」の設定について。開発段階ということもありドキュメントにはあまり書かれていない部分があったためメモしておきます。 installationgithubからreleaseをダウンロード＞nog.exeを起動しようとしてもうまくいかない。公式">
+  
+  
+  <meta name="twitter:image" content="http://ut4k.github.ioundefined">
+  
+  <meta name="twitter:url" content="http://ut4k.github.io/2021/09/21/Windows%E7%94%A8%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3%E3%80%8Cnog%E3%80%8D%E3%81%AE%E8%A8%AD%E5%AE%9A/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="../fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌠</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      happy-dev
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>Windows用ウィンドウマネージャ「nog」の設定</h2>
+
+  <p>Windows向けに開発されているウィンドウマネージャ「<a target="_blank" rel="noopener" href="https://github.com/TimUntersberger/nog">nog</a>」の設定について。<br>開発段階ということもあり<a target="_blank" rel="noopener" href="https://timuntersberger.github.io/nog">ドキュメント</a>にはあまり書かれていない部分があったためメモしておきます。</p>
+<h2 id="installation"><a href="#installation" class="headerlink" title="installation"></a>installation</h2><p>githubからreleaseをダウンロード＞nog.exeを起動しようとしてもうまくいかない。<br>公式ドキュメントに従って、希望バージョンをcloneしたあと、<br>同梱の<code>.download_release.ps1</code>を利用するとよい。</p>
+<p>成功すると自動的に下記の場所に実行ファイルを含め一式がインストールされる。</p>
+<pre class="line-numbers language-none"><code class="language-none">C:\Users\UserName\AppData\Roaming\nog<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="設定ファイル"><a href="#設定ファイル" class="headerlink" title="設定ファイル"></a>設定ファイル</h3><pre class="line-numbers language-none"><code class="language-none">C:\Users\UserName\AppData\Roaming\nog\config\init.lua<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="実行ファイル"><a href="#実行ファイル" class="headerlink" title="実行ファイル"></a>実行ファイル</h3><pre class="line-numbers language-none"><code class="language-none">C:\Users\UserName\AppData\Roaming\nog\bin\nog.exe<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="起動"><a href="#起動" class="headerlink" title="起動"></a>起動</h2><p>これもドキュメントにある通り下記を実行。<br>※あとで簡易起動できるように設定しておいたほうがよさそう。</p>
+<pre class="line-numbers language-PowerShell" data-language="PowerShell"><code class="language-PowerShell">start-process $(&quot;$env:APPDATA\nog\bin\nog.exe&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<hr>
+<p>以下は<code>init.lua</code>に記載する。</p>
+<h2 id="バーの色を変更"><a href="#バーの色を変更" class="headerlink" title="バーの色を変更"></a>バーの色を変更</h2><pre class="line-numbers language-lua" data-language="lua"><code class="language-lua">nog<span class="token punctuation">.</span>config<span class="token punctuation">.</span>bar<span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token number">0x393837</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>値は先頭に<code>0x</code>をつけたRGBのHexで記載する。<br><strong>注意すべきなのが、左からB-&gt;G-&gt;Rの順で記載しなくてはならないこと。</strong><br>たとえば<a target="_blank" rel="noopener" href="https://www.color-hex.com/color/43b581">この色</a>だったら、<br><code>0x43b581</code>と記載するとまったく意図せぬ色になってしまう。</p>
+<p>正しくは<code>0x81b543</code>と記述する。<br><code>Number</code>を受け取るとあるが、クォーテーションで囲んだ文字列でもよさそう。</p>
+<pre class="line-numbers language-lua" data-language="lua"><code class="language-lua">nog<span class="token punctuation">.</span>config<span class="token punctuation">.</span>bar<span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token number">0x81b543</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="Nerd-Fontを表示"><a href="#Nerd-Fontを表示" class="headerlink" title="Nerd Fontを表示"></a>Nerd Fontを表示</h2><p>アイコンをそのまま<code>init.lua</code>のtextの値としてコピペすればよい。<br>(<code>\\uE62B</code>←こんな感じの記述は不要）<br><code>nf-custom-vim</code>(vimのシンボル)を表示したいときは、<br><a target="_blank" rel="noopener" href="https://www.nerdfonts.com/cheat-sheet">Nerd Fontのサイト</a>からicon形式でコピペしてくればOK。</p>
+<p>こんな感じでバーのコンポーネントにも使える。</p>
+<pre class="line-numbers language-lua" data-language="lua"><code class="language-lua"><span class="token keyword">local</span> barStatusFancySymbol <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>symbol_<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
+    name <span class="token operator">=</span> <span class="token string">"FancySymbol"</span><span class="token punctuation">,</span>
+    render <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> text <span class="token operator">=</span> symbol_ <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
+    <span class="token keyword">end</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token keyword">end</span>
+
+nog<span class="token punctuation">.</span>config<span class="token punctuation">.</span>bar<span class="token punctuation">.</span>components <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  left <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+		<span class="token function">barStatusFancySymbol</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  center <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  right <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="リサイズ機能をキーバインドする"><a href="#リサイズ機能をキーバインドする" class="headerlink" title="リサイズ機能をキーバインドする"></a>リサイズ機能をキーバインドする</h2><p>ドキュメントの<a target="_blank" rel="noopener" href="https://timuntersberger.github.io/nog/api/Workspace.html?highlight=ws_resize#ws_resizedirection">ws_resize</a>の項に<br><code>ws_resize(direction)</code>と1つのパラメータをとるような記述があるが、<br>詳細を読むと実際は<code>ws_resize(direction, amount)</code>の２つをとるとのこと。</p>
+<p>下記はようやく動かせた自分用設定。<br>対応キー押下でカレントウィンドウの幅を5ずつリサイズする。<br>キーは各アプリとの競合回避のため適当に<code>Ctrl-3</code>、<code>Ctrl-4</code>のように設定。</p>
+<pre class="line-numbers language-lua" data-language="lua"><code class="language-lua">nog<span class="token punctuation">.</span><span class="token function">gbind</span><span class="token punctuation">(</span><span class="token string">"control+3"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">-- nog.gbind("shift+h", function()</span>
+	nog<span class="token punctuation">.</span><span class="token function">ws_resize</span><span class="token punctuation">(</span><span class="token string">"Left"</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span>
+
+nog<span class="token punctuation">.</span><span class="token function">gbind</span><span class="token punctuation">(</span><span class="token string">"control+shift+3"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">-- nog.gbind("control+shift+h", function()</span>
+	nog<span class="token punctuation">.</span><span class="token function">ws_resize</span><span class="token punctuation">(</span><span class="token string">"Left"</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">)</span>
+	<span class="token comment">-- nog.ws_resize("Right", -5)</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span>
+
+nog<span class="token punctuation">.</span><span class="token function">gbind</span><span class="token punctuation">(</span><span class="token string">"control+4"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">-- nog.gbind("control+l", function()</span>
+	nog<span class="token punctuation">.</span><span class="token function">ws_resize</span><span class="token punctuation">(</span><span class="token string">"Right"</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span>
+
+nog<span class="token punctuation">.</span><span class="token function">gbind</span><span class="token punctuation">(</span><span class="token string">"control+shift+4"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">-- nog.gbind("control+shift+l", function()</span>
+	nog<span class="token punctuation">.</span><span class="token function">ws_resize</span><span class="token punctuation">(</span><span class="token string">"Right"</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">)</span>
+	<span class="token comment">-- nog.ws_resize("Left", -5)</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="コンポーネントに任意の色を付ける"><a href="#コンポーネントに任意の色を付ける" class="headerlink" title="コンポーネントに任意の色を付ける"></a>コンポーネントに任意の色を付ける</h2><p><a target="_blank" rel="noopener" href="https://timuntersberger.github.io/nog/configuration/bar.html?highlight=fg#components">Barの項目</a>を注意して読むと、<br>コンポーネントを構成する<code>render</code>ファンクションが返す<code>table</code>には、<br>じつは<code>text</code>だけでなく<code>fg</code>、<code>bg</code>という、<code>number</code>をとるフィールドも指定できるとのこと。<br>試してみると配色を変更できることを確認できた。</p>
+<p><strong>※色の指方法は<code>nog.config.bar.colr</code>の指定と同様。</strong></p>
+<blockquote>
+<p>A component text is a table with a required text field and optional fg, bg and value fields which take a number and change the colors of the component.</p>
+</blockquote>
+<pre class="line-numbers language-lua" data-language="lua"><code class="language-lua"><span class="token keyword">local</span> foo <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>text_<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
+    name <span class="token operator">=</span> <span class="token string">"MyText"</span><span class="token punctuation">,</span>
+    render <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>
+				text <span class="token operator">=</span> text_<span class="token punctuation">,</span>
+				fg <span class="token operator">=</span> <span class="token number">000000</span><span class="token punctuation">,</span> 
+				bg <span class="token operator">=</span> <span class="token number">000000</span>
+			<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
+    <span class="token keyword">end</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>linuxのwmライクで見た目もかなり気に入ったので導入してみました。<br>まだ不安定なところや使い勝手が悪いところも多いですが、<code>rust</code>製ということもあり動作は高速で、<br>また<code>lua</code>による設定ファイルでのユーザーの拡張性もかなり高く、カスタマイズ性が高そうです。<br>将来性がありそうなので、今後も更新状況を追っていこうと思います。</p>
+
+  <p> — Sep 21, 2021</p>
+  
+
+
+          <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/ut4k" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>
